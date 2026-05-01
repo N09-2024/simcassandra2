@@ -1,0 +1,354 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Colors - Light Ultra Clean */
+  --bg-app: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-sidebar: #ffffff;
+  --border-light: #e2e8f0;
+  
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary: #94a3b8;
+  
+  --primary-color: #3b82f6;
+  --primary-hover: #2563eb;
+  --primary-light: #eff6ff;
+  
+  --success-color: #10b981;
+  --success-bg: #ecfdf5;
+  --error-color: #ef4444;
+  --error-bg: #fef2f2;
+  --warning-color: #f59e0b;
+  --warning-bg: #fffbeb;
+
+  /* Node Colors */
+  --node-0: #4f46e5; /* Indigo */
+  --node-1: #0ea5e9; /* Sky */
+  --node-2: #10b981; /* Emerald */
+  --node-3: #f59e0b; /* Amber */
+  --node-4: #8b5cf6; /* Violet */
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+  
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Utilities */
+.card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-light);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card-interactive:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  font-family: 'Inter', sans-serif;
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: white;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--primary-hover);
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-primary:disabled {
+  background: var(--text-tertiary);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+}
+
+.btn-outline:hover {
+  background: var(--bg-app);
+  color: var(--text-primary);
+  border-color: #cbd5e1;
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  font-size: 13px;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  transition: all 0.2s;
+  outline: none;
+}
+
+.input-field:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge-success { background: var(--success-bg); color: var(--success-color); }
+.badge-error { background: var(--error-bg); color: var(--error-color); }
+.badge-warning { background: var(--warning-bg); color: var(--warning-color); }
+.badge-primary { background: var(--primary-light); color: var(--primary-color); }
+.badge-neutral { background: #f1f5f9; color: var(--text-secondary); }
+
+/* Animations */
+@keyframes pulse-ring {
+  0% { transform: scale(0.9); opacity: 1; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Node cards Specific */
+.node-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.node-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 4px;
+  background: var(--node-color, #e2e8f0);
+  opacity: 0.8;
+}
+
+/* Tabs */
+.tab-btn {
+  padding: 1rem 1.5rem;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-tertiary);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Inter', sans-serif;
+}
+.tab-btn:hover {
+  color: var(--text-secondary);
+}
+.tab-btn.active {
+  color: var(--primary-color);
+  border-bottom-color: var(--primary-color);
+}
+
+/* --- Animations Write Path (Refonte Cluster) --- */
+
+.system-node {
+  position: absolute;
+  background: var(--bg-surface);
+  border: 2px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  z-index: 10;
+  transform: translate(-50%, -50%);
+}
+
+.system-node.client-node { width: 100px; }
+.system-node.coord-node { width: 140px; }
+.system-node.replica-node { width: 160px; }
+
+.node-label {
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text-primary);
+  margin-top: 0.5rem;
+}
+
+.active-node {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+.status-badge {
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.ping-badge {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  animation: ping-pulse 1s infinite;
+}
+
+.error-badge {
+  background: var(--error-color);
+  color: white;
+  border-color: var(--error-color);
+}
+
+@keyframes ping-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+  70% { box-shadow: 0 0 0 6px rgba(59, 130, 246, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+.internal-engine {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 10px;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.internal-engine.show-engine {
+  opacity: 1;
+  height: auto;
+}
+
+.engine-part {
+  background: var(--bg-app);
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  font-size: 10px;
+  padding: 2px 5px;
+  transition: background 0.2s;
+}
+
+.flash-write {
+  animation: write-flash 0.5s ease;
+}
+
+@keyframes write-flash {
+  0% { background: var(--success-bg); border-color: var(--success-color); }
+  100% { background: var(--bg-app); border-color: var(--border-light); }
+}
+
+/* Animations de paquets dynamiques (CSS Variables) */
+
+.data-packet {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--primary-color);
+  font-size: 1.2rem;
+  z-index: 20;
+  pointer-events: none;
+  /* Start pos by default */
+  top: var(--start-y);
+  left: var(--start-x);
+  transform: translate(-50%, -50%) scale(0.5);
+  opacity: 0;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.ack-packet {
+  border-color: var(--success-color);
+  background: var(--success-bg);
+}
+
+/* 1. Client -> Coord */
+.anim-c-to-coord { animation: movePacket 3.5s forwards ease-in-out; }
+/* 2. Coord -> Replicas */
+.anim-coord-to-rep { animation: movePacket 3.5s forwards ease-in-out; }
+/* 4. Replicas -> Coord */
+.anim-rep-to-coord { animation: movePacket 3.5s forwards ease-in-out; }
+/* 5. Coord -> Client */
+.anim-coord-to-c { animation: movePacket 3.5s forwards ease-in-out; }
+
+@keyframes movePacket {
+  0% { top: var(--start-y); left: var(--start-x); transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+  10% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  90% { top: var(--end-y); left: var(--end-x); transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  100% { top: var(--end-y); left: var(--end-x); transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+}
